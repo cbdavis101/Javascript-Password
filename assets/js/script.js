@@ -2,12 +2,17 @@
 
 // MAKE THESE ARRAYS FOR NUMBERS, LOWER, UPPER, SPECIAL, LENGTH
 let passlength = [12];
-let numbers = ["1234567890"];
-let lowercase = ["abcdefghijklmnopqrstuvwxyz"];
-let uppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-let specialchar = ["!@#$%^&*(=+,./|\{}"];
+let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+let uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
+let specialchar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", "=", "+", ".", "/", "+"]
+
 
 console.log(passlength);
+console.log(numbers.length);
+console.log(lowercase.length);
+console.log(uppercase.length);
+console.log(specialchar);
 
 // Get references to the #generate element
 let generateBtn = document.querySelector("#generate");
