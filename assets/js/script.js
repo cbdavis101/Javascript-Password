@@ -9,6 +9,7 @@ let specialchar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", "=", "+", ".", "
 let finalPass = "";
 
 
+
 // Get references to the #generate element
 let generateBtn = document.querySelector("#generate");
 
@@ -16,8 +17,6 @@ let generateBtn = document.querySelector("#generate");
 function writePassword() {
   let password = generatePassword();
   let passwordText = document.querySelector("#password");
-
-// Allowing for Password to not have , between every value when generated
   passwordText.value = password
 }
 
@@ -59,6 +58,7 @@ function generatePassword () {
     window.alert("Please select a valid character type to contiunue");
     return;
   }
+
   // Creating array with the confirmed variables create 4 different if true variables to join password generation 
   if (passwordNumberlength) {
     finalPass = finalPass.concat(passwordLength);
@@ -81,8 +81,10 @@ function generatePassword () {
   } 
 }
 
-for (var i = 0; i < passwordLength; i++) {
+for (var i = 0; i < parseInt(passwordLength); i++) {
   finalPass[Math.floor(Math.random() * finalPass.length)];
   console.log(finalPass);
   }
+  
+return finalPass;
 }
