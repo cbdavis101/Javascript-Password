@@ -14,13 +14,11 @@ let generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input  
 function writePassword() {
-  // let password = generatePassword();
   let randomPassword = "";
   let j = 0; // this determines which character type is being added.
   for(let i = 0;i < passwordLength; i++) { // i is the length of the password.
   
     randomPassword += combined[j][randomNumber(0, combined[j].length)];
-
 
       // Checking to see if we have used all of the character type already.
       if(j === combined.length - 1) {
@@ -67,7 +65,7 @@ function generatePassword (event) {
       window.alert("Please type in a password that is less than 128 characters but more than 8 characters long!");
       return;
     }
-
+// Prompt to user confirm if they want this value or not. 
   let passwordNumberlength = confirm("Please confirm if you want numbers in your password!");
 
   let passLowerCaseLength = confirm("Please confirm if you want lowercases in your password!");
@@ -75,8 +73,7 @@ function generatePassword (event) {
   let passUpperCaseLength = confirm("Please confirm if you want uppercases in your password!");
 
   let passSpecialLength = confirm("Please confirm if you want special characters in your password!");
-
-  // Creating array with the confirmed variables create 4 different if true variables to join password generation
+// If loop to determine which variables were confirmed. If they were confirmed they are going to go on our final array
   if (passLowerCaseLength) {
      combined.push(lowercase);
   }
