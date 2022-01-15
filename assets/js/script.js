@@ -6,7 +6,7 @@ let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 let uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
 let specialchar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", "=", "+", ".", "/", "+"]
-let finalPass = [""];
+let finalPass = "";
 
 
 // Get references to the #generate element
@@ -20,6 +20,9 @@ function writePassword() {
 // Allowing for Password to not have , between every value when generated
   passwordText.value = password
 }
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 // Creating Prompt Alerts for the Password Criteria 
 function generatePassword () {
@@ -58,26 +61,28 @@ function generatePassword () {
   }
   // Creating array with the confirmed variables create 4 different if true variables to join password generation 
   if (passwordNumberlength) {
-    finalPass = finalPass.concat(passwordNumberlength);
+    finalPass = finalPass.concat(passwordLength);
+    console.log(passwordLength)
   }  
   if (passLowerCaseLength) {
-    finalPass = finalPass.concat(passLowerCaseLength);
-  }
+    finalPass = finalPass.concat(lowercase);
+
   if (passUpperCaseLength) {
-    finalPass = finalPass.concat(passUpperCaseLength);
+    finalPass = finalPass.concat(uppercase);
   }
   if (passSpecialLength) {
-    finalPass = finalPass.concat(passSpecialLength);
+    finalPass = finalPass.concat(specialchar);
   }
-  if (!passwordLength && !passLowerCaseLength && !passUpperCaseLength && !passSpecialLength) {
+  if (passwordNumberlength) {
+    finalPass = finalPass.concat(numbers);
+  }
+  if (!passwordLength && !passLowerCaseLength && !passUpperCaseLength && !passSpecialLength && !passwordNumberlength) {
     writePassword();
   } 
 }
 
 for (var i = 0; i < passwordLength; i++) {
-  password.push(finalPass[Math.floor(Math.random() * finalPass.length)]);
+  finalPass[Math.floor(Math.random() * finalPass.length)];
+  console.log(finalPass);
+  }
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
