@@ -7,6 +7,7 @@ let lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 let uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
 let specialchar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", "=", "+", ".", "/", "+"]
 let finalPass = [];
+let combined = [];
 
 // Get references to the #generate element
 let generateBtn = document.querySelector("#generate");
@@ -15,10 +16,24 @@ let generateBtn = document.querySelector("#generate");
 function writePassword() {
   // let password = generatePassword();
   let randomPassword = "";
-  for (var i = 0; i < passwordLength; i++) {
-   randomPassword += finalPass[randomNumber(0, finalPass.length)]
-  } 
-  
+  let j = 0; // this determines which character type is being added.
+  for(let i = 0;i < passwordLength; i++) { // i is the length of the password.
+    console.log(combined);
+    randomPassword += combined[j][randomNumber(0, combined[j].length)];
+      debugger;
+
+      // Checking to see if we have used all of the character type already.
+      if(j === combined.length) {
+          j = 0; // Resetting so we can use the first character type again.
+      } else {
+          j++; // If not then moving to the next character type.
+      }
+  }
+  // takes the current password string and shuffles the characters to be random.
+  randomPassword.split('')
+  .sort(() => (Math.random() > .5) ? 1 : -1) 
+  .join('');
+
   let passwordText = document.querySelector("#password");
   passwordText.value = randomPassword;
 
@@ -32,7 +47,10 @@ function randomNumber(min, max) {
 }randomNumber(0, 2)
 
 // Creating Prompt Alerts for the Password Criteria 
-function generatePassword () {
+
+function generatePassword (event) {
+  if (event.target.id !== "generate")
+  return;
   passwordLength = parseInt (prompt("Please enter the amount of characters you want for your password. Please choose more than 8 but less than 128 characters total!"));
     // Creating IF Loops to ensure the value entered meets the criteria 
       if (isNaN(passwordLength)) {
@@ -63,16 +81,16 @@ function generatePassword () {
 
   // Creating array with the confirmed variables create 4 different if true variables to join password generation
   if (passLowerCaseLength) {
-    finalPass = finalPass.concat(lowercase);
+     combined.push(lowercase);
   }
   if (passUpperCaseLength) {
-    finalPass = finalPass.concat(uppercase);
+    combined.push(uppercase);
   }
   if (passSpecialLength) {
-    finalPass = finalPass.concat(specialchar);
+    combined.push(specialchar);
   }
   if (passwordNumberlength) {
-    finalPass = finalPass.concat(numbers);
+    combined.push(numbers);
   }
   if (!passLowerCaseLength && !passUpperCaseLength && !passSpecialLength && !passwordNumberlength) {
     window.alert("Please select a valid character type to contiunue");
