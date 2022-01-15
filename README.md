@@ -1,12 +1,17 @@
-# Password Generator Starter Code
+# Password Generator 
+
+## Description 
+
+This was a project that was given to me from the UT Full-Stack Coding Bootcamp. The idea of this project was to create a strong and secure password. 
+
+When you click generate password you will receive mutiple prompts that will appear. You will need to decide how long you want your password to be, however it has to be within 8-128 characters. From then you can decide if you want numbers, lower case, upper case, and special characters in the password. 
+
+Once you have completed all the prompts you should see your password generated in the box!
+
+Congrats you have a new secure password!
 
 
 
+![Final Code Results!!](./assets/images/code.png)
 
-
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
-WHEN all prompts are answered
-THEN a password is generated that matches the selected criteria
-WHEN the password is generated
-THEN the password is either displayed in an alert or written to the page
+[Password Generator](https://cbdavis101.github.io/Javascript-Password/)

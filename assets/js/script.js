@@ -87,7 +87,7 @@ function generatePassword (event) {
     combined.push(numbers);
   }
   if (!passLowerCaseLength && !passUpperCaseLength && !passSpecialLength && !passwordNumberlength) {
-    window.alert("Please select a valid character type to contiunue");
+    window.alert("Please select a valid character type to continue");
     generatePassword();
     return;
   } 
