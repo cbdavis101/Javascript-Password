@@ -1,11 +1,13 @@
 // Assignment code here
 
 // Creating Array for Length, Numbers, Lowercase, Uppercase, Special Characters
-let passlength = [""];
+let passwordLength = [""];
 let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 let uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
 let specialchar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", "=", "+", ".", "/", "+"]
+let finalPass = [""];
+
 
 // Get references to the #generate element
 let generateBtn = document.querySelector("#generate");
@@ -15,14 +17,14 @@ function writePassword() {
   let password = generatePassword();
   let passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
-
+// Allowing for Password to not have , between every value when generated
+  passwordText.value = password
 }
 
 // Creating Prompt Alerts for the Password Criteria 
 function generatePassword () {
-  let passwordLength = parseInt (prompt("Please enter the amount of characters you want for your password. Please choose more than 12 but less than 128 characters total!"));
-
+  let passwordLength = parseInt (prompt("Please enter the amount of characters you want for your password. Please choose more than 8 but less than 128 characters total!"));
+    // Creating IF Loops to ensure the value entered meets the criteria 
       if (isNaN(passwordLength)) {
 
       window.alert("Please enter a number between 8 and 128!");
@@ -31,7 +33,7 @@ function generatePassword () {
       
       if (passwordLength < 8) {
 
-      window.alert("Please type in a password that is atleast 8 characters long!");
+      window.alert("Please type in a password length that is atleast 8 characters long!");
       return;
     }
 
@@ -49,20 +51,32 @@ function generatePassword () {
 
   let passSpecialLength = confirm("Please confirm if you want special characters in your password!");
 
+ // IF loop to ensure the user uses the characters need to form a password
   if (passwordNumberlength === false && passLowerCaseLength === false && passUpperCaseLength === false && passSpecialLength === false) {
     window.alert("Please select a valid character type to contiunue");
     return;
   }
+  // Creating array with the confirmed variables create 4 different if true variables to join password generation 
+  if (passwordNumberlength) {
+    finalPass = finalPass.concat(passwordNumberlength);
+  }  
+  if (passLowerCaseLength) {
+    finalPass = finalPass.concat(passLowerCaseLength);
+  }
+  if (passUpperCaseLength) {
+    finalPass = finalPass.concat(passUpperCaseLength);
+  }
+  if (passSpecialLength) {
+    finalPass = finalPass.concat(passSpecialLength);
+  }
+  if (!passwordLength && !passLowerCaseLength && !passUpperCaseLength && !passSpecialLength) {
+    writePassword();
+  } 
 }
 
-
-
-
-
-
-
-
-
+for (var i = 0; i < passwordLength; i++) {
+  password.push(finalPass[Math.floor(Math.random() * finalPass.length)]);
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
