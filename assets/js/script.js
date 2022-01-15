@@ -18,25 +18,24 @@ function writePassword() {
   let randomPassword = "";
   let j = 0; // this determines which character type is being added.
   for(let i = 0;i < passwordLength; i++) { // i is the length of the password.
-    console.log(combined);
+  
     randomPassword += combined[j][randomNumber(0, combined[j].length)];
-      debugger;
+
 
       // Checking to see if we have used all of the character type already.
-      if(j === combined.length) {
+      if(j === combined.length - 1) {
           j = 0; // Resetting so we can use the first character type again.
       } else {
           j++; // If not then moving to the next character type.
       }
   }
   // takes the current password string and shuffles the characters to be random.
-  randomPassword.split('')
+  randomPassword = randomPassword.split('')
   .sort(() => (Math.random() > .5) ? 1 : -1) 
   .join('');
-
+  
   let passwordText = document.querySelector("#password");
   passwordText.value = randomPassword;
-
 }
 
 // Add event listener to generate button
@@ -49,8 +48,6 @@ function randomNumber(min, max) {
 // Creating Prompt Alerts for the Password Criteria 
 
 function generatePassword (event) {
-  if (event.target.id !== "generate")
-  return;
   passwordLength = parseInt (prompt("Please enter the amount of characters you want for your password. Please choose more than 8 but less than 128 characters total!"));
     // Creating IF Loops to ensure the value entered meets the criteria 
       if (isNaN(passwordLength)) {
