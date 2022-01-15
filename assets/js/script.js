@@ -1,27 +1,32 @@
 // Assignment code here
 
 // Creating Array for Length, Numbers, Lowercase, Uppercase, Special Characters
-let passwordLength = [""];
+let passwordLength = [];
 let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 let uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
 let specialchar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", "=", "+", ".", "/", "+"]
-let finalPass = "";
-
-
+let finalPass = [];
 
 // Get references to the #generate element
 let generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
+// Write password to the #password input  
 function writePassword() {
-  let password = generatePassword();
+  // let password = generatePassword();
+  let randomPassword = "";
+  console.log(passwordLength)
+  for (var i = 0; i < passwordLength; i++) {
+   randomPassword += finalPass[Math.floor(Math.random() * finalPass.length)];  
+  }
+  console.log(randomPassword);
+
   let passwordText = document.querySelector("#password");
-  passwordText.value = password
+  // passwordText.value = password (wrong syntax name)
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
 
 // Creating Prompt Alerts for the Password Criteria 
 function generatePassword () {
@@ -53,20 +58,10 @@ function generatePassword () {
 
   let passSpecialLength = confirm("Please confirm if you want special characters in your password!");
 
- // IF loop to ensure the user uses the characters need to form a password
-  if (passwordNumberlength === false && passLowerCaseLength === false && passUpperCaseLength === false && passSpecialLength === false) {
-    window.alert("Please select a valid character type to contiunue");
-    return;
-  }
-
-  // Creating array with the confirmed variables create 4 different if true variables to join password generation 
-  if (passwordNumberlength) {
-    finalPass = finalPass.concat(passwordLength);
-    console.log(passwordLength)
-  }  
+  // Creating array with the confirmed variables create 4 different if true variables to join password generation
   if (passLowerCaseLength) {
     finalPass = finalPass.concat(lowercase);
-
+  }
   if (passUpperCaseLength) {
     finalPass = finalPass.concat(uppercase);
   }
@@ -76,15 +71,14 @@ function generatePassword () {
   if (passwordNumberlength) {
     finalPass = finalPass.concat(numbers);
   }
-  if (!passwordLength && !passLowerCaseLength && !passUpperCaseLength && !passSpecialLength && !passwordNumberlength) {
-    writePassword();
+  if (!passLowerCaseLength && !passUpperCaseLength && !passSpecialLength && !passwordNumberlength) {
+    window.alert("Please select a valid character type to contiunue");
+    generatePassword();
+    return;
   } 
+
+  writePassword();
 }
 
-for (var i = 0; i < parseInt(passwordLength); i++) {
-  finalPass[Math.floor(Math.random() * finalPass.length)];
-  console.log(finalPass);
-  }
-  
-return finalPass;
-}
+
+
